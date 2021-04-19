@@ -5,6 +5,7 @@ import { IncompleteItem } from './component/IncompleteItem';
 import { CompleteItem } from './component/CompleteItem';
 
 export const App = () => {
+	const [ todoText, setTodoText ] = useState( '' );
 	/**
 	 * 未完了TODOの配列
 	 */
@@ -15,10 +16,17 @@ export const App = () => {
 	 */
 	const [ completeList, setCompleteList ] = useState( ['ううう'] );
 
+	/**
+	 * inputに入力したらvalueの値を上書きする
+	 *
+	 * @param event
+	 */
+	const onChangeTodoText = ( event ) => setTodoText( event.target.value );
+
 	return (
 		<>
 			<div className="input-area">
-				<input type="text" placeholder="TODOを入力" />
+				<input type="text" placeholder="TODOを入力" value={ todoText } onChange={ onChangeTodoText } />
 				<button>追加</button>
 			</div>
 			<div className="incomplete-area">
