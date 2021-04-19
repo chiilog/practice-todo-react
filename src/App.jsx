@@ -25,7 +25,7 @@ export const App = () => {
 				<p className="title">未完了のTODO</p>
 				<ul>
 					{ inCompleteList.map( ( todo ) => {
-						return <IncompleteItem />;
+						return <IncompleteItem text={ todo } />;
 					}) }
 				</ul>
 			</div>
@@ -33,7 +33,7 @@ export const App = () => {
 				<p className="title">完了のTODO</p>
 				<ul>
 					{ completeList.map( ( todo ) => {
-						return <CompleteItem />;
+						return <CompleteItem text={ todo } />;
 					}) }
 				</ul>
 			</div>
