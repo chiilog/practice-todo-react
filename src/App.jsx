@@ -1,7 +1,24 @@
 import React from "react";
 import "./App.css";
 
+import { IncompleteItem } from './component/IncompleteItem';
+import { CompleteItem } from './component/CompleteItem';
+
 export const App = () => {
+	/**
+	 * 未完了TODOの配列
+	 *
+	 * @type {string[]}
+	 */
+	const inCompleteList = ['あ', 'い'];
+
+	/**
+	 * 完了TODOの配列
+	 *
+	 * @type {string[]}
+	 */
+	const completeList = ['う'];
+
 	return (
 		<>
 			<div className="input-area">
@@ -11,31 +28,13 @@ export const App = () => {
 			<div className="incomplete-area">
 				<p className="title">未完了のTODO</p>
 				<ul>
-					<li>
-						<div className="list-row">
-							<p>あ</p>
-							<button>完了</button>
-							<button>削除</button>
-						</div>
-					</li>
-					<li>
-						<div className="list-row">
-							<p>い</p>
-							<button>完了</button>
-							<button>削除</button>
-						</div>
-					</li>
+					<IncompleteItem />
 				</ul>
 			</div>
 			<div className="complete-area">
 				<p className="title">完了のTODO</p>
 				<ul>
-					<li>
-						<div className="list-row">
-							<p>う</p>
-							<button>戻す</button>
-						</div>
-					</li>
+					<CompleteItem />
 				</ul>
 			</div>
 		</>
