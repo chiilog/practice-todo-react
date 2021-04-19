@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import "./App.css";
 
 import { IncompleteItem } from './component/IncompleteItem';
@@ -7,17 +7,13 @@ import { CompleteItem } from './component/CompleteItem';
 export const App = () => {
 	/**
 	 * 未完了TODOの配列
-	 *
-	 * @type {string[]}
 	 */
-	const inCompleteList = ['あ', 'い'];
+	const [ inCompleteList, setInCompleteList ] = useState( ['あああ', 'いいい'] );
 
 	/**
 	 * 完了TODOの配列
-	 *
-	 * @type {string[]}
 	 */
-	const completeList = ['う'];
+	const [ completeList, setCompleteList ] = useState( ['ううう'] );
 
 	return (
 		<>
@@ -28,13 +24,17 @@ export const App = () => {
 			<div className="incomplete-area">
 				<p className="title">未完了のTODO</p>
 				<ul>
-					<IncompleteItem />
+					{ inCompleteList.map( ( todo ) => {
+						return <IncompleteItem />;
+					}) }
 				</ul>
 			</div>
 			<div className="complete-area">
 				<p className="title">完了のTODO</p>
 				<ul>
-					<CompleteItem />
+					{ completeList.map( ( todo ) => {
+						return <CompleteItem />;
+					}) }
 				</ul>
 			</div>
 		</>
