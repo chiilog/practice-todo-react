@@ -13,7 +13,7 @@ export const App = () => {
 	/**
 	 * 未完了TODOの配列のステート
 	 */
-	const [ inCompleteList, setInCompleteList ] = useState( ['あああ', 'いいい'] );
+	const [ incompleteList, setIncompleteList ] = useState( ['あああ', 'いいい'] );
 
 	/**
 	 * 完了TODOの配列のステート
@@ -31,8 +31,8 @@ export const App = () => {
 	 * 追加ボタンをクリックしたら未完了TODOに追加する
 	 */
 	const onClickAddTodo = () => {
-		const newTodos = [...inCompleteList, todoText];
-		setInCompleteList( newTodos );
+		const newTodos = [...incompleteList, todoText];
+		setIncompleteList( newTodos );
 		setTodoText( '' );
 	};
 
@@ -41,9 +41,9 @@ export const App = () => {
 	 * @param {number} index
 	 */
 	const onClickDelete = ( index ) => {
-		const newTodos = [...inCompleteList];
+		const newTodos = [...incompleteList];
 		newTodos.splice( index, 1 );
-		setInCompleteList( newTodos );
+		setIncompleteList( newTodos );
 	}
 
 	/**
@@ -51,11 +51,24 @@ export const App = () => {
 	 * @param {number} index
 	 */
 	const onClickComplete = ( index ) => {
-		const incompleteTodos = [...inCompleteList];
+		const incompleteTodos = [...incompleteList];
 		const completeTodos = [...completeList, incompleteTodos[index]];
 		setCompleteList( completeTodos );
 		incompleteTodos.splice( index, 1 );
-		setInCompleteList( incompleteTodos );
+		setIncompleteList( incompleteTodos );
+	}
+
+	/**
+	 * 戻すボタンをクリックしたら、完了TODOからTODOを削除し、未完了TODOに追加する
+	 *
+	 * @param {number} index
+	 */
+	const onClickRestore = ( index ) => {
+		const completeTodos = [...completeList];
+		const incompleteTodos = [...incompleteList, completeTodos[index]];
+		setIncompleteList( incompleteTodos );
+		completeTodos.splice( index, 1 );
+		setCompleteList( completeTodos );
 	}
 
 	return (
@@ -67,7 +80,7 @@ export const App = () => {
 			<div className="incomplete-area">
 				<p className="title">未完了のTODO</p>
 				<ul>
-					{ inCompleteList.map( ( todo, index ) => {
+					{ incompleteList.map( ( todo, index ) => {
 						return <IncompleteItem
 							key={ todo }
 							text={ todo }
@@ -80,10 +93,11 @@ export const App = () => {
 			<div className="complete-area">
 				<p className="title">完了のTODO</p>
 				<ul>
-					{ completeList.map( ( todo ) => {
+					{ completeList.map( ( todo, index ) => {
 						return <CompleteItem
 							key={ todo }
 							text={ todo }
+							onClickRestore={ () => onClickRestore( index ) }
 						/>;
 					}) }
 				</ul>
