@@ -36,6 +36,16 @@ export const App = () => {
 		setTodoText( '' );
 	};
 
+	/**
+	 * 削除ボタンをクリックしたらTODOを削除する
+	 * @param index
+	 */
+	const onClickDelete = ( index ) => {
+		const newTodos = [...inCompleteList];
+		newTodos.splice( index, 1 );
+		setInCompleteList( newTodos );
+	}
+
 	return (
 		<>
 			<div className="input-area">
@@ -49,6 +59,7 @@ export const App = () => {
 						return <IncompleteItem
 							key={ todo }
 							text={ todo }
+							onClickDelete={ () => onClickDelete( index ) }
 						/>;
 					}) }
 				</ul>
