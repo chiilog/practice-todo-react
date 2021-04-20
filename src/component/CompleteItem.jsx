@@ -5,7 +5,7 @@ export const CompleteItem = ( props ) => {
 
 	return (
 		<li>
-			<div key={ text } className="list-row">
+			<div className="list-row">
 				<p>{ text }</p>
 				<button>戻す</button>
 			</div>

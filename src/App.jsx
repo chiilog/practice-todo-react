@@ -5,14 +5,18 @@ import { IncompleteItem } from './component/IncompleteItem';
 import { CompleteItem } from './component/CompleteItem';
 
 export const App = () => {
-	const [ todoText, setTodoText ] = useState( '' );
 	/**
-	 * 未完了TODOの配列
+	 * 入力するテキストのステート
+	 */
+	const [ todoText, setTodoText ] = useState( '' );
+
+	/**
+	 * 未完了TODOの配列のステート
 	 */
 	const [ inCompleteList, setInCompleteList ] = useState( ['あああ', 'いいい'] );
 
 	/**
-	 * 完了TODOの配列
+	 * 完了TODOの配列のステート
 	 */
 	const [ completeList, setCompleteList ] = useState( ['ううう'] );
 
@@ -32,8 +36,11 @@ export const App = () => {
 			<div className="incomplete-area">
 				<p className="title">未完了のTODO</p>
 				<ul>
-					{ inCompleteList.map( ( todo ) => {
-						return <IncompleteItem text={ todo } />;
+					{ inCompleteList.map( ( todo, index ) => {
+						return <IncompleteItem
+							key={ todo }
+							text={ todo }
+						/>;
 					}) }
 				</ul>
 			</div>
@@ -41,7 +48,10 @@ export const App = () => {
 				<p className="title">完了のTODO</p>
 				<ul>
 					{ completeList.map( ( todo ) => {
-						return <CompleteItem text={ todo } />;
+						return <CompleteItem
+							key={ todo }
+							text={ todo }
+						/>;
 					}) }
 				</ul>
 			</div>
