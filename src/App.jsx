@@ -38,12 +38,24 @@ export const App = () => {
 
 	/**
 	 * 削除ボタンをクリックしたらTODOを削除する
-	 * @param index
+	 * @param {number} index
 	 */
 	const onClickDelete = ( index ) => {
 		const newTodos = [...inCompleteList];
 		newTodos.splice( index, 1 );
 		setInCompleteList( newTodos );
+	}
+
+	/**
+	 * 完了ボタンをクリックしたら、未完了TODOからTODOを削除し、完了TODOに追加する
+	 * @param {number} index
+	 */
+	const onClickComplete = ( index ) => {
+		const incompleteTodos = [...inCompleteList];
+		const completeTodos = [...completeList, incompleteTodos[index]];
+		setCompleteList( completeTodos );
+		incompleteTodos.splice( index, 1 );
+		setInCompleteList( incompleteTodos );
 	}
 
 	return (
@@ -60,6 +72,7 @@ export const App = () => {
 							key={ todo }
 							text={ todo }
 							onClickDelete={ () => onClickDelete( index ) }
+							onClickComplete={ () => onClickComplete( index ) }
 						/>;
 					}) }
 				</ul>
