@@ -27,11 +27,20 @@ export const App = () => {
 	 */
 	const onChangeTodoText = ( event ) => setTodoText( event.target.value );
 
+	/**
+	 * 追加ボタンをクリックしたら未完了TODOに追加する
+	 */
+	const onClickAddTodo = () => {
+		const newTodos = [...inCompleteList, todoText];
+		setInCompleteList( newTodos );
+		setTodoText( '' );
+	};
+
 	return (
 		<>
 			<div className="input-area">
 				<input type="text" placeholder="TODOを入力" value={ todoText } onChange={ onChangeTodoText } />
-				<button>追加</button>
+				<button onClick={ onClickAddTodo }>追加</button>
 			</div>
 			<div className="incomplete-area">
 				<p className="title">未完了のTODO</p>
